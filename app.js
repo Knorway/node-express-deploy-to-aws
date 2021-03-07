@@ -42,9 +42,11 @@ sequelize
 		console.error(err);
 	});
 
+app.use(helmet({ contentSecurityPolicy: false }));
+
 if (process.env.NODE_ENV === 'production') {
 	app.use(morgan('combined'));
-	app.use(helmet());
+	app.use(helmet({ contentSecurityPolicy: false }));
 	app.use(hpp());
 } else {
 	app.use(morgan('dev'));
